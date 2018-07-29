@@ -1,5 +1,5 @@
 import React from 'react';
-import {AppRoboFriend} from 'containers/AppRoboFriend/AppRoboFriend';
+// import {AppRoboFriend} from 'containers/AppRoboFriend/AppRoboFriend';
 import {AppSmartBrain} from 'containers/AppSmartBrain/AppSmartBrain';
 
 import 'bootstrap/dist/css/bootstrap.min.css';

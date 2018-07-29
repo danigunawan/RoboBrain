@@ -2,38 +2,38 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Navbar.css';
 
-class Navbar extends React.Component {
+class    Navbar extends React.Component {
     render() {
 
         return (
-            <header class="container">
-                {/* <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+            <header className="container">
+                {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="navbarNavDropdown" aria-controls="navbarNavDropdown"
                     aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
+                    <span className="navbar-toggler-icon"></span>
                 </button> */}
-                {/* <div class="collapse navbar-collapse" id="navbarNavDropdown"> */}
-                <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
+                {/* <div className="collapse navbar-collapse" id="navbarNavDropdown"> */}
+                <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"></link>
-                    <a class="navbar-brand mr-auto " href="#"><i id="navbar-icon" class="fas fa-blind fa-2x"></i></a>
-                    <ul class="navbar-nav">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">Home<span class="sr-only">(current)</span>
+                    <a className="navbar-brand mr-auto " href=""><i id="navbar-icon" className="fas fa-blind fa-2x"></i></a>
+                    <ul className="navbar-nav">
+                        <li className="nav-item active">
+                            <a className="nav-link" href="">Home<span className="sr-only">(current)</span>
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <li className="nav-item dropdown">
+                            <a className="nav-link dropdown-toggle" href="" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Product
                                 </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="#">SmartBrain</a>
-                                <a class="dropdown-item" href="#">Trading Platform</a>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a className="dropdown-item" href="">SmartBrain</a>
+                                <a className="dropdown-item" href="">Trading Platform</a>
                             </div>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">About</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="">About</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Contact</a>
+                        <li className="nav-item">
+                            <a className="nav-link" href="">Contact</a>
                         </li>
                     </ul>
 

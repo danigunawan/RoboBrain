@@ -1,5 +1,11 @@
-#recognitionImage{
-    margin: 5rem 0rem;
+#box {
     justify-content: center;
-    min-width: 500px;
+    padding: 5rem 10rem;
+}
+
+
+#inputImg{
+    max-height: 50rem;
+    width: auto;
+    border: 1px solid black;
 }
