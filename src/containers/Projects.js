@@ -10,7 +10,7 @@ class Projects extends React.Component {
             <div className="container">
                 <Navbar/>
                 <Body/>
-                <Footer/>
+                {/* <Footer/> */}
             </div>
         );
     }
