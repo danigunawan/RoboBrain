@@ -8,4 +8,4 @@ VS CODE Setting
 }
 
 @installed
-DotENV highlight-matching-tag LiveServer Sublime Babel
+DotENV, highlight-matching-tag, Live Server, Sublime Babel, ESLint, Debugger for Chrome

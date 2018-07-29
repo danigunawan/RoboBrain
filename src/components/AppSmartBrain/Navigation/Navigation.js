@@ -14,8 +14,8 @@ export class Navigation extends React.Component{
                     LOGO
                 </div>
                 <div className="row col-md-3" id="SignIn">
-                    <a href="#">Sign In</a>
-                    <a href="#">Sign Out</a>
+                    <a href="">Sign In</a>
+                    <a href="">Sign Out</a>
                 </div>
             </div>
         );

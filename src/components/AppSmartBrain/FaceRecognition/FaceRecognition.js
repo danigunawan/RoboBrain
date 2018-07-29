@@ -8,8 +8,8 @@ export class FaceRecognition extends React.Component{
     render(){
 
         return (
-            <div className="row" id="recognitionImage">
-                <img src={this.props.imageURL} alt="Regconition Image"/>
+            <div className="row" id="box">
+                <img  id="inputImg" src={this.props.imageURL} alt=""/>
             </div>
         );
     }
