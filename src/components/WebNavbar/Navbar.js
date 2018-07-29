@@ -13,7 +13,7 @@ class    Navbar extends React.Component {
                 </button> */}
                 {/* <div className="collapse navbar-collapse" id="navbarNavDropdown"> */}
                 <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
-                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous"></link>
+                    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossOrigin="anonymous"></link>
                     <a className="navbar-brand mr-auto " href=""><i id="navbar-icon" className="fas fa-blind fa-2x"></i></a>
                     <ul className="navbar-nav">
                         <li className="nav-item active">

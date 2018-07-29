@@ -26,6 +26,7 @@ export class AppSmartBrain extends React.Component {
 
     calculateFaceLocation = (data) => {
         const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
+        console.log('clarifaiFace coordinate: ', clarifaiFace);
         const image = document.querySelector("#inputImg");
         const width = Number(image.width);
         const height = Number(image.height);
@@ -38,7 +39,7 @@ export class AppSmartBrain extends React.Component {
     }
 
     displayFaceBox = (box) =>{
-        console.log(box);
+        console.log('bounding-box coordinate: ', box);
         this.setState({ box: box}); 
     }
 
@@ -47,11 +48,11 @@ export class AppSmartBrain extends React.Component {
     }
 
     onSubmitButton = (event) => {
-        this.setState({ imageURL: this.state.inputURL });
-
-        app.models.predict(Clarifai.GENERAL_MODEL, this.state.imageURL)
-        .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-        .catch(error => console.log(error))
+        this.setState({ imageURL: this.state.inputURL }, function() {
+            app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.imageURL)
+                .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
+                .catch(error => console.log(error))
+        });
     }
 
     render() {
@@ -63,7 +64,7 @@ export class AppSmartBrain extends React.Component {
                     onInputChange={this.onInputChange} 
                     onSubmitButton={this.onSubmitButton}
                 />
-                <FaceRecognition imageURL={this.state.imageURL}/>
+                <FaceRecognition box={this.state.box} imageURL={this.state.imageURL}/>
             </div>
         );
     }
