@@ -1,7 +1,7 @@
 import React from 'react';
 import Navbar from 'components/WebNavbar/Navbar';
 import Body from 'components/WebBody/Body';
-import Footer from 'components/WebFooter/Footer';
+// import Footer from 'components/WebFooter/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class Projects extends React.Component {
@@ -15,9 +15,6 @@ class Projects extends React.Component {
         );
     }
 
-    componentDidMount(){
-        console.log('ComponentDidMount');
-    }
 }
 
 export default Projects;

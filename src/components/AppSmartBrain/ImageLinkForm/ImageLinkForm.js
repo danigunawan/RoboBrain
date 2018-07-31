@@ -13,8 +13,7 @@ export class ImageLinkForm extends React.Component{
                     <div className="form-group">
                         <input type="text" className="form-control" id="inputURL" aria-describedby="emailHelp" placeholder="Image URL" onChange={this.props.onInputChange}></input>
                     </div>
-                    <button type="submit" className="btn btn-primary"
-                     onClick={this.props.onSubmitButton}>Detect</button>
+                    <button type="button" className="btn btn-primary" onClick={this.props.onSubmitButton}>Detect</button>
                 </form>
             </div>
         );
