@@ -14,8 +14,8 @@ export class Navigation extends React.Component{
                     LOGO
                 </div>
                 <div className="row col-md-3" id="SignIn">
-                    <a href="">Sign In</a>
-                    <a href="">Sign Out</a>
+                    <a href="" onClick={()=> onRouteChange('signin')}>Sign In</a>
+                    <a href="" onClick={()=> onRouteChange('register')}>Register</a>
                 </div>
             </div>
         );

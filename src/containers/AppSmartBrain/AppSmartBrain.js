@@ -5,6 +5,8 @@ import { Navigation } from 'components/AppSmartBrain/Navigation/Navigation';
 import { Ranking } from 'components/AppSmartBrain/Ranking/Ranking';
 import { ImageLinkForm } from 'components/AppSmartBrain/ImageLinkForm/ImageLinkForm';
 import { FaceRecognition } from 'components/AppSmartBrain/FaceRecognition/FaceRecognition';
+import { SignIn } from 'components/AppSmartBrain/Authentication/SignIn';
+import { Register } from 'components/AppSmartBrain/Authentication/Register';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './AppSmartBrain.css';
@@ -20,7 +22,12 @@ export class AppSmartBrain extends React.Component {
         this.state = {
             inputURL: "",
             box: [],
+            route: "",
         };
+    }
+
+    onRouteChange = (route) => {
+        this.setState({ route: route });
     }
 
     onInputChange = (event) => {
@@ -57,15 +64,24 @@ export class AppSmartBrain extends React.Component {
     }
 
     render() {
+
         return (
             <div className="container">
-                <Navigation />
-                <Ranking />
-                <ImageLinkForm
-                    onInputChange={this.onInputChange}
-                    onSubmitButton={this.onSubmitButton}
-                />
-                <FaceRecognition box={this.state.box} imageURL={this.state.inputURL} />
+                <Navigation onRouteChange={this.onRouteChange} />
+                {this.state.route === 'signin'
+                    ? <SignIn />
+                    : (
+                        this.state.route === 'register'
+                            ? <Register />
+                            : <div>
+                                <ImageLinkForm
+                                    onInputChange={this.onInputChange}
+                                    onSubmitButton={this.onSubmitButton}
+                                />
+                                <FaceRecognition box={this.state.box} imageURL={this.state.inputURL} />
+                            </div>
+                    )
+                }
             </div>
         );
     }
