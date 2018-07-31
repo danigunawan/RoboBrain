@@ -14,7 +14,7 @@ export class Register extends React.Component {
                             <h3 className="text-center mb-4">Sign-up</h3>
                             <div className="alert alert-danger">
                                 <a className="close font-weight-light" data-dismiss="alert" href="#">×</a>Password is too short.
-                    </div>
+                            </div>
                             <fieldset>
                                 <div className="form-group has-error">
                                     <input className="form-control input-lg" placeholder="E-mail Address" name="email" type="text" />
@@ -38,7 +38,7 @@ export class Register extends React.Component {
                                         <input name="terms" type="checkbox" />I have read and agree to the <a href="#">terms of service</a>
                                     </label>
                                 </div>
-                                <input className="btn btn-lg btn-primary btn-block" value="Sign Me Up" type="submit" />
+                                <input className="btn btn-lg btn-primary btn-block" value="Register" type="submit"/>
                             </fieldset>
                         </div>
                     </div>

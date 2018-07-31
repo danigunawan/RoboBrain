@@ -8,7 +8,7 @@ export class ImageLinkForm extends React.Component{
     render(){
 
         return (
-            <div className="row" id="inputForm">
+            <div className="container text-center" id="inputForm">
                 <h5>Detect Faces In Picture</h5>
                 <form className="form-inline">
                     <div className="form-group">

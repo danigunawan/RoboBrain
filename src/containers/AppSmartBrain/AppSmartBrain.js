@@ -2,7 +2,6 @@ import React from 'react';
 import Clarifai from 'clarifai';
 
 import { Navigation } from 'components/AppSmartBrain/Navigation/Navigation';
-import { Ranking } from 'components/AppSmartBrain/Ranking/Ranking';
 import { ImageLinkForm } from 'components/AppSmartBrain/ImageLinkForm/ImageLinkForm';
 import { FaceRecognition } from 'components/AppSmartBrain/FaceRecognition/FaceRecognition';
 import { SignIn } from 'components/AppSmartBrain/Authentication/SignIn';
@@ -22,11 +21,18 @@ export class AppSmartBrain extends React.Component {
         this.state = {
             inputURL: "",
             box: [],
-            route: "",
+            route: "home",
+            isSignedIn: false,
         };
     }
 
     onRouteChange = (route) => {
+        if (route === 'signout') {
+            this.setState({ isSignedIn: false })
+        } else if (route === 'home') {
+            this.setState({ isSignedIn: true })
+        }
+
         this.setState({ route: route });
     }
 
@@ -67,19 +73,21 @@ export class AppSmartBrain extends React.Component {
 
         return (
             <div className="container">
-                <Navigation onRouteChange={this.onRouteChange} />
+                <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} />
                 {this.state.route === 'signin'
-                    ? <SignIn />
-                    : (
-                        this.state.route === 'register'
-                            ? <Register />
-                            : <div>
+                    ? <SignIn onRouteChange={this.onRouteChange}/>
+                    : (this.state.route === 'register'
+                        ? <Register />
+                        : (this.state.route === 'home'
+                            ? <div>
                                 <ImageLinkForm
                                     onInputChange={this.onInputChange}
                                     onSubmitButton={this.onSubmitButton}
                                 />
                                 <FaceRecognition box={this.state.box} imageURL={this.state.inputURL} />
                             </div>
+                            : <h1> ERROR in AppSmartBrain.js</h1>
+                        )
                     )
                 }
             </div>
