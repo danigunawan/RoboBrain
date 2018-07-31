@@ -10,49 +10,50 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './AppSmartBrain.css';
 
 const app = new Clarifai.App({
-    apiKey: '0b09880976d542439c1b91abe1f58df2'
-   });
+    apiKey: 'ab9f18e9276a4f9b94f742a30c3f3103'
+});
 
 export class AppSmartBrain extends React.Component {
 
-    constructor(){
+    constructor() {
         super();
         this.state = {
-            inputURL : "",
-            imageURL : "",
-            box : {},
+            inputURL: "",
+            box: [],
         };
-    }
-
-    calculateFaceLocation = (data) => {
-        const clarifaiFace = data.outputs[0].data.regions[0].region_info.bounding_box;
-        console.log('clarifaiFace coordinate: ', clarifaiFace);
-        const image = document.querySelector("#inputImg");
-        const width = Number(image.width);
-        const height = Number(image.height);
-        return {
-            leftCol: clarifaiFace.left_col*width,
-            topRow: clarifaiFace.top_row*height,
-            rightCol: width-(clarifaiFace.right_col*width),
-            bottomRow: height-(clarifaiFace.bottom_row*height)
-        };
-    }
-
-    displayFaceBox = (box) =>{
-        console.log('bounding-box coordinate: ', box);
-        this.setState({ box: box}); 
     }
 
     onInputChange = (event) => {
         this.setState({ inputURL: event.target.value });
     }
 
-    onSubmitButton = (event) => {
-        this.setState({ imageURL: this.state.inputURL }, function() {
-            app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.imageURL)
-                .then(response => this.displayFaceBox(this.calculateFaceLocation(response)))
-                .catch(error => console.log(error))
-        });
+    onSubmitButton = () => {
+        app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.inputURL)
+            .then(response => {
+                this.displayFaceBox(this.calculateFaceLocation(response))
+            })
+            .catch(err => console.log(err));
+    }
+
+    displayFaceBox = (box) => {
+        this.setState({ box: box });
+    }
+
+    calculateFaceLocation = (data) => {
+        const clarifaiFaces = data.outputs[0].data.regions.map(face => {
+            const boundingBox = face.region_info.bounding_box;
+            const image = document.querySelector("#inputImg");
+            const width = Number(image.width);
+            const height = Number(image.height);
+            return {
+                leftCol: boundingBox.left_col * width,
+                topRow: boundingBox.top_row * height,
+                rightCol: width - (boundingBox.right_col * width),
+                bottomRow: height - (boundingBox.bottom_row * height)
+            };
+        })
+
+        return clarifaiFaces;
     }
 
     render() {
@@ -60,11 +61,11 @@ export class AppSmartBrain extends React.Component {
             <div className="container">
                 <Navigation />
                 <Ranking />
-                <ImageLinkForm 
-                    onInputChange={this.onInputChange} 
+                <ImageLinkForm
+                    onInputChange={this.onInputChange}
                     onSubmitButton={this.onSubmitButton}
                 />
-                <FaceRecognition box={this.state.box} imageURL={this.state.imageURL}/>
+                <FaceRecognition box={this.state.box} imageURL={this.state.inputURL} />
             </div>
         );
     }

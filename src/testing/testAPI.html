@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+
+    Document.write(testAPI)
+
+    <script type="text/javascript" src="https://sdk.clarifai.com/js/clarifai-latest.js">
+        const Clarifai = require('clarifai');
+
+        const app = new Clarifai.App({
+            apiKey: '0b09880976d542439c1b91abe1f58df2'
+        })
+
+        const testAPI = () => {
+            const imgURL = "https://www.uni-regensburg.de/Fakultaeten/phil_Fak_II/Psychologie/Psy_II/beautycheck/english/kindchenschema/kindfrau_c/kindfrau_c_50_gr.jpg";
+
+            return
+                app.models
+                    .predict(Clarifai.FACE_DETECT_MODEL, imgURL)
+                    .then(response => console.log('repsone ', response))
+                    .catch(error => console.log(error));
+       }
+
+    </script>
+</body>
+
+</html>

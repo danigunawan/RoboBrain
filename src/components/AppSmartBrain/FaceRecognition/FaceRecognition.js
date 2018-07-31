@@ -6,12 +6,18 @@ import './FaceRecognition.css';
 export class FaceRecognition extends React.Component {
 
     render() {
+        const { imageURL, box } = this.props;
+
+        const drawBoundingBox = box.map((bBox, index) =>{
+            return <div id="bounding-boxes" key={index} style={{ top: bBox.topRow, bottom: bBox.bottomRow, left: bBox.leftCol, right: bBox.rightCol }}>
+                   </div>
+        })
 
         return (
             <div className="container col-md-9" id="content-box">
                 <div className="d-inline-block" id="box">
-                    <img id="inputImg" src={this.props.imageURL} alt=""></img>
-                    <div id="bounding-boxes" style={{ top: this.props.box.topRow, bottom: this.props.box.bottomRow, left: this.props.box.leftCol, right: this.props.box.rightCol }}></div>
+                    <img id="inputImg" src={imageURL} alt=""></img>
+                    { drawBoundingBox }
                 </div>
             </div>
            
