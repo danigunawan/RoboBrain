@@ -86,7 +86,7 @@ export class AppSmartBrain extends React.Component {
                                 />
                                 <FaceRecognition box={this.state.box} imageURL={this.state.inputURL} />
                             </div>
-                            : <h1> ERROR in AppSmartBrain.js</h1>
+                            : <h1>ERROR: Not Found</h1>
                         )
                     )
                 }
