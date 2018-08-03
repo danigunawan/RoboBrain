@@ -23,17 +23,28 @@ export class AppSmartBrain extends React.Component {
             box: [],
             route: "home",
             isSignedIn: false,
+            signedInUser: {
+                id: "",
+                name: "",
+                email: "",
+                password: "",
+                entries: 0,
+                joined: ""
+            }
         };
     }
 
     onRouteChange = (route) => {
         if (route === 'signout') {
-            this.setState({ isSignedIn: false })
-        } else if (route === 'home') {
-            this.setState({ isSignedIn: true })
-        }
+            this.setState({ route: route, isSignedIn: false, signedInUser: "" });
+        } 
 
         this.setState({ route: route });
+    }
+
+    onSignedIn = (bool, user)=>{
+        this.setState({ isSignedIn: bool, signedInUser: user});
+        console.log('signedInUser ', this.state.signedInUser);
     }
 
     onInputChange = (event) => {
@@ -43,7 +54,23 @@ export class AppSmartBrain extends React.Component {
     onSubmitButton = () => {
         app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.inputURL)
             .then(response => {
-                this.displayFaceBox(this.calculateFaceLocation(response))
+                
+                fetch('http://localhost:3000/image',{
+                    method: 'put',
+                    headers:{
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json, text/plain, */*'
+
+                    },
+                    body: JSON.stringify({ id:this.state.signedInUser.id})
+                })
+                    .then(res=> res.json())
+                    .then(entries=> {
+                        this.setState(Object.assign(this.state.signedInUser, { entries: entries}));
+                    })
+                    .catch(err=> console.log(err));
+
+                this.displayFaceBox(this.calculateFaceLocation(response));
             })
             .catch(err => console.log(err));
     }
@@ -73,12 +100,12 @@ export class AppSmartBrain extends React.Component {
 
         return (
             <div className="container">
-                <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} />
+                <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} signedInUser={this.state.signedInUser}/>
                 {this.state.route === 'signin'
-                    ? <SignIn onRouteChange={this.onRouteChange}/>
+                    ? <SignIn onRouteChange={this.onRouteChange} onSignedIn={this.onSignedIn}/>
                     : (this.state.route === 'register'
-                        ? <Register />
-                        : (this.state.route === 'home'
+                        ? <Register onRouteChange={this.onRouteChange}/>
+                        : (this.state.route === 'home' || this.state.route==='signout'
                             ? <div>
                                 <ImageLinkForm
                                     onInputChange={this.onInputChange}

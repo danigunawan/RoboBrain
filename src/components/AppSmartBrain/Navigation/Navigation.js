@@ -7,10 +7,7 @@ import './Navigation.css';
 export class Navigation extends React.Component{
 
     render(){
-        const { onRouteChange, isSignedIn } = this.props;
-        console.log(this.props);
-        console.log(this.props.isSignedIn);
-        console.log(isSignedIn);
+        const { onRouteChange, isSignedIn, signinUser } = this.props;
         if(isSignedIn){
             return (
                 <div className="row">
@@ -18,6 +15,7 @@ export class Navigation extends React.Component{
                         LOGO
                     </div>
                     <div>
+                        <h6>Welcome back {signinUser}</h6>
                         <a href="#" onClick={()=> onRouteChange('signout')}>Sign Out</a>
                     </div>
                 </div>
