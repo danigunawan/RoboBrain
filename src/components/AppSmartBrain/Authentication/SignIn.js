@@ -42,17 +42,14 @@ export class SignIn extends React.Component {
 
     onInputEmail=(event)=>{
         this.setState({signinEmail: event.target.value});
-        console.log('email ', this.state.signinEmail);
     }
 
     onInputPassword=(event)=>{
         this.setState({signinPassword: event.target.value});
-        console.log('password ', this.state.signinPassword);
     }
 
     onOptionRememberMe=(event)=>{
         console.log('remember-me ', event.target.value);
-        this.setState({rememberMe: true});
     }
 
     componentDidMount(){

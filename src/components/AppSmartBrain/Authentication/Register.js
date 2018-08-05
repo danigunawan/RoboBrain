@@ -17,8 +17,6 @@ export class Register extends React.Component {
     onSubmit = (event) => {
         event.preventDefault();
 
-        console.log(this.state.password);
-        console.log(this.state.confirmPassword);
         if (this.state.password !== this.state.confirmPassword) {
             return alert('password and confirm-password is not the same');
         }
@@ -35,10 +33,12 @@ export class Register extends React.Component {
                 if (res.status === 200) {
                     res.json();
                     this.props.onRouteChange('signin');
+                } else {
+                    throw new Error('email already used');
                 }
             })
-            .then(data => console.log(data))
-            .catch(err => console.log(err))
+            .then(data => console.log(data))    
+            .catch(err => alert(err))
     }
 
     onInputName = (event) => {

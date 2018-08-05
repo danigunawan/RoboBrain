@@ -14,6 +14,21 @@ const app = new Clarifai.App({
     apiKey: 'ab9f18e9276a4f9b94f742a30c3f3103'
 });
 
+const initialState={
+    inputURL: "",
+    box: [],
+    route: "home",
+    isSignedIn: false,
+    signedInUser: {
+        id: null,
+        name: "",
+        email: "",
+        entries: 0,
+        joined: "",
+        password: ""
+    }
+}
+
 export class AppSmartBrain extends React.Component {
 
     constructor() {
@@ -24,27 +39,27 @@ export class AppSmartBrain extends React.Component {
             route: "home",
             isSignedIn: false,
             signedInUser: {
-                id: "",
+                id: null,
                 name: "",
                 email: "",
-                password: "",
                 entries: 0,
-                joined: ""
+                joined: "",
+                password: ""
             }
         };
     }
 
     onRouteChange = (route) => {
         if (route === 'signout') {
-            this.setState({ route: route, isSignedIn: false, signedInUser: "" });
-        } 
+            // this.setState({ route: route, isSignedIn: false, signedInUser: "" });
+            this.setState(initialState);
+        }
 
         this.setState({ route: route });
     }
 
-    onSignedIn = (bool, user)=>{
-        this.setState({ isSignedIn: bool, signedInUser: user});
-        console.log('signedInUser ', this.state.signedInUser);
+    onSignedIn = (bool, user) => {
+        this.setState({ isSignedIn: bool, signedInUser: user });
     }
 
     onInputChange = (event) => {
@@ -54,21 +69,21 @@ export class AppSmartBrain extends React.Component {
     onSubmitButton = () => {
         app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.inputURL)
             .then(response => {
-                
-                fetch('http://localhost:3000/image',{
+
+                fetch('http://localhost:3000/image', {
                     method: 'put',
-                    headers:{
+                    headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json, text/plain, */*'
 
                     },
-                    body: JSON.stringify({ id:this.state.signedInUser.id})
+                    body: JSON.stringify({ id: this.state.signedInUser.id })
                 })
-                    .then(res=> res.json())
-                    .then(entries=> {
-                        this.setState(Object.assign(this.state.signedInUser, { entries: entries}));
+                    .then(res => res.json())
+                    .then(entries => {
+                        this.setState(Object.assign(this.state.signedInUser, { entries: entries }));
                     })
-                    .catch(err=> console.log(err));
+                    .catch(err => console.log(err));
 
                 this.displayFaceBox(this.calculateFaceLocation(response));
             })
@@ -100,12 +115,12 @@ export class AppSmartBrain extends React.Component {
 
         return (
             <div className="container">
-                <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} signedInUser={this.state.signedInUser}/>
+                <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} signedInUser={this.state.signedInUser} />
                 {this.state.route === 'signin'
-                    ? <SignIn onRouteChange={this.onRouteChange} onSignedIn={this.onSignedIn}/>
+                    ? <SignIn onRouteChange={this.onRouteChange} onSignedIn={this.onSignedIn} />
                     : (this.state.route === 'register'
-                        ? <Register onRouteChange={this.onRouteChange}/>
-                        : (this.state.route === 'home' || this.state.route==='signout'
+                        ? <Register onRouteChange={this.onRouteChange} />
+                        : (this.state.route === 'home' || this.state.route === 'signout'
                             ? <div>
                                 <ImageLinkForm
                                     onInputChange={this.onInputChange}
