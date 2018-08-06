@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './AppSmartBrain.css';
 
 const app = new Clarifai.App({
-    apiKey: process.env.API_KEY
+    apiKey: process.env.API_CLARIFAI_KEY
 });
 
 const initialState={
