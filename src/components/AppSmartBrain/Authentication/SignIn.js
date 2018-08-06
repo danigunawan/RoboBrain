@@ -15,7 +15,7 @@ export class SignIn extends React.Component {
     onSubmitSignin=(event)=>{
         event.preventDefault();
 
-        fetch('http://localhost:3000/signin', {
+        fetch(this.props.urlServer+'/signin', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
@@ -53,7 +53,7 @@ export class SignIn extends React.Component {
     }
 
     componentDidMount(){
-        fetch('http://localhost:3000/profile')
+        fetch(this.props.urlServer+'/profile')
             .then(res=>{
                 if(res.status===200){
                     console.log(res.json());

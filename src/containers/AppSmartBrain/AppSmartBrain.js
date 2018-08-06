@@ -11,7 +11,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './AppSmartBrain.css';
 
 const app = new Clarifai.App({
-    apiKey: 'ab9f18e9276a4f9b94f742a30c3f3103'
+    apiKey: process.env.API_KEY
 });
 
 const initialState={
@@ -45,7 +45,8 @@ export class AppSmartBrain extends React.Component {
                 entries: 0,
                 joined: "",
                 password: ""
-            }
+            },
+            urlServer: "https://radiant-eyrie-72396.herokuapp.com"
         };
     }
 
@@ -70,7 +71,7 @@ export class AppSmartBrain extends React.Component {
         app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.inputURL)
             .then(response => {
 
-                fetch('http://localhost:3000/image', {
+                fetch(this.state.urlServer+'/image', {
                     method: 'put',
                     headers: {
                         'Content-Type': 'application/json',
@@ -117,9 +118,9 @@ export class AppSmartBrain extends React.Component {
             <div className="container">
                 <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} signedInUser={this.state.signedInUser} />
                 {this.state.route === 'signin'
-                    ? <SignIn onRouteChange={this.onRouteChange} onSignedIn={this.onSignedIn} />
+                    ? <SignIn onRouteChange={this.onRouteChange} onSignedIn={this.onSignedIn} urlServer={this.state.urlServer} />
                     : (this.state.route === 'register'
-                        ? <Register onRouteChange={this.onRouteChange} />
+                        ? <Register onRouteChange={this.onRouteChange} urlServer={this.state.urlServer}/>
                         : (this.state.route === 'home' || this.state.route === 'signout'
                             ? <div>
                                 <ImageLinkForm

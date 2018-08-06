@@ -21,7 +21,7 @@ export class Register extends React.Component {
             return alert('password and confirm-password is not the same');
         }
 
-        fetch('http://localhost:3000/register', {
+        fetch(this.props.urlServer+'/register', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
