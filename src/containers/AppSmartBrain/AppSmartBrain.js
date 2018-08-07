@@ -116,6 +116,7 @@ export class AppSmartBrain extends React.Component {
 
         return (
             <div className="container">
+                <ErrorBoundry>
                 <Navigation onRouteChange={this.onRouteChange} isSignedIn={this.state.isSignedIn} signedInUser={this.state.signedInUser} />
                 {this.state.route === 'signin'
                     ? <SignIn onRouteChange={this.onRouteChange} onSignedIn={this.onSignedIn} urlServer={this.state.urlServer} />
@@ -133,6 +134,7 @@ export class AppSmartBrain extends React.Component {
                         )
                     )
                 }
+                </ErrorBoundry>
             </div>
         );
     }
