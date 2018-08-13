@@ -1,11 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { createStore, applyMiddleware, combineReducers } from 'redux';
+import { Provider } from 'react-redux';
+import { createLogger } from 'redux-logger';
+import thunkMiddleware from 'redux-thunk';
+import { signinStatus, imageDetection } from 'reducers';
+import Projects from 'containers/Projects';
+import registerServiceWorker from 'registerServiceWorker';
 
-import Projects from './containers/Projects';
-import registerServiceWorker from './registerServiceWorker';
+const logger = createLogger();
+const rootReducers = combineReducers({signinStatus, imageDetection});
+const store = createStore(rootReducers, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render(
-      <Projects/>,
-    document.querySelector("#page-wrapper")
+    <Provider store={store}>
+    <Projects/>
+     </Provider>,document.querySelector("#page-wrapper")
   );
 registerServiceWorker();

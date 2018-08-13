@@ -1,20 +1,64 @@
 import React from 'react';
-import Navbar from 'components/WebNavbar/Navbar';
-import Body from 'components/WebBody/Body';
-// import Footer from 'components/WebFooter/Footer';
+import { connect } from 'react-redux';
+import { setRoute } from 'actions';
+import { PROJECT_MAINPAGE, APP_ROBOFRIEND, APP_SMARTBRAIN } from 'constans';
+import { Card } from 'components/Project/Card/ProjectCard';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+const appInfo = [
+    {
+        appImage: '',
+        appTitle: 'RoboFriend',
+        appText: '',
+        route: APP_ROBOFRIEND
+    },
+    {
+        appImage: '',
+        appTitle: 'SmartBrain',
+        appText: '',
+        route: APP_SMARTBRAIN
+    }
+]
+
+const mapStateToProps=(state)=>{
+    return{
+        route: state.signinStatus.route
+    }
+}
+
+const mapDispatchToProps=(dispatch)=>{
+    return{
+        onRouteChange:(route)=>dispatch(setRoute(route))
+    }
+}
+
 class Projects extends React.Component {
+    componentDidMount(){
+        this.props.onRouteChange(PROJECT_MAINPAGE);
+    }
+
     render() {
+        const { route, onRouteChange } = this.props;
+        const applist = appInfo.map((app, index)=>{
+            return <Card appImage={app.appImage} appTitle={app.appTitle} appText={app.appText} appRoute={APP_ROBOFRIEND} onRouteChange={onRouteChange}/>
+        })
+
         return (
             <div className="container">
-                <Navbar/>
-                <Body/>
-                {/* <Footer/> */}
+                {route===PROJECT_MAINPAGE
+                    ? <div className="row">
+                        {applist}
+                    </div>
+                    : (route===APP_ROBOFRIEND
+                            ? <div className="robofriend">ROBO FRIEND APP WILL BE INSERTED HERE</div>
+                            :(route===APP_SMARTBRAIN
+                                    ? <div className="smartbrain">SMARTBRAIN APP WILL BE INSERTED HERE</div>
+                                    : <h3>error: there is no Route assign</h3>
+                            )
+                    )}
             </div>
         );
     }
-
 }
 
-export default Projects;
+export default connect(mapStateToProps, mapDispatchToProps)(Projects);
