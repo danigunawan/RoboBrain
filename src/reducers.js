@@ -3,7 +3,10 @@ import {USER_SIGNIN_SUCCESS, USER_SIGNIN_FAIL, IMAGE_URL_CHANGE, ON_ROUTE_CHANGE
 
 const initialSigninStatus={
     isSignedIn: false,
-    signinUser: {},
+    signedInUser: {},
+    signinEmail: '',
+    signinPassword: '',
+    signinRememberMe: '',
     route: ''
 }
 

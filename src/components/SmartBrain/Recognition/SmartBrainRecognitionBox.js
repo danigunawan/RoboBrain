@@ -1,9 +1,9 @@
-import React from 'react';
+import React from '../../../../../../../AppData/Local/Microsoft/TypeScript/2.9/node_modules/@types/react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './FaceRecognition.css';
+import './SmartBrain_FaceRecog.css';
 
-export class FaceRecognition extends React.Component {
+export class FaceRecog extends React.Component {
 
     render() {
         const { imageURL, box } = this.props;

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 import { signinStatus, imageDetection } from 'reducers';
-import Projects from 'containers/Projects';
+import Project from 'containerProject/containerProject';
 import registerServiceWorker from 'registerServiceWorker';
 
 const logger = createLogger();
@@ -14,7 +14,7 @@ const store = createStore(rootReducers, applyMiddleware(thunkMiddleware, logger)
 
 ReactDOM.render(
     <Provider store={store}>
-    <Projects/>
+    <Project/>
      </Provider>,document.querySelector("#page-wrapper")
   );
 registerServiceWorker();

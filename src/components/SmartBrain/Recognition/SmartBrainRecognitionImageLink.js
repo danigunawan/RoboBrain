@@ -1,9 +1,9 @@
 import React from 'react';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './ImageLinkForm.css';
+import './SmartBrain_ImageForm.css';
 
-export class ImageLinkForm extends React.Component{
+export class ImageForm extends React.Component{
 
     render(){
 

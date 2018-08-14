@@ -1,11 +1,11 @@
 import React from 'react';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './Navigation.css';
+import {SIGNOUT,SIGNIN,REGISTER} from 'constans';
+import './SmartBrainAuthenticateNavbar.css';
 import logo from './icons8-physics-64.png';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
-export class Navigation extends React.Component {
+export class Navbar extends React.Component {
 
     render() {
         const { onRouteChange, isSignedIn, signedInUser } = this.props;
@@ -18,7 +18,7 @@ export class Navigation extends React.Component {
                     </div>
                     <div>
                         <h6>Welcome back {signedInUser.name}</h6>
-                        <a href="#" onClick={() => onRouteChange('signout')}>Sign Out</a>
+                        <a href="#" onClick={() => onRouteChange(SIGNOUT)}>Sign Out</a>
                     </div>
                 </div>
             );
@@ -29,8 +29,8 @@ export class Navigation extends React.Component {
                         <img src={logo} alt="icon physics" />
                     </div>
                     <div className="row col-md-3" id="SignIn">
-                        <a href="#" onClick={() => onRouteChange('signin')}>Sign In</a>
-                        <a href="#" onClick={() => onRouteChange('register')}>Register</a>
+                        <a href="#" onClick={() => onRouteChange(SIGNIN)}>Sign In</a>
+                        <a href="#" onClick={() => onRouteChange(REGISTER)}>Register</a>
                     </div>
                 </div>
             );
