@@ -1,15 +1,17 @@
-import React from 'react';
-import {connect} from 'react-redux';
-import Clarifai from 'clarifai';
+import React from 'react'
+import {connect} from 'react-redux'
+import Clarifai from 'clarifai'
+import { BrowserRouter, Switch, Route } from 'react-router'
+
 // import { ImageLinkForm } from 'components/AppSmartBrain/ImageLinkForm/ImageLinkForm';
 // import { FaceRecognition } from 'components/AppSmartBrain/FaceRecognition/FaceRecognition';
-import SignIn from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateSignIn';
+import SignIn from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateSignIn'
 // import { Register } from 'components/AppSmartBrain/Authentication/Register';
-import { Navbar } from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateNavbar';
-import {SIGNOUT,SIGNIN,REGISTER,URLSERVER} from 'constans';
-import { setRoute} from 'actions';
-import './containerSmartBrain.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { Navbar } from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateNavbar'
+import {SIGNOUT,SIGNIN,REGISTER,URLSERVER} from 'constans'
+import { setRoute} from 'actions'
+import './cSmartBrain.css'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 
@@ -86,9 +88,10 @@ class SmartBrain extends React.Component {
     }
 
     render() {
-        const { onRouteChange, isSignedIn, signedInUser, onSignedIn, route } = this.props;
-
+        const { onRouteChange, isSignedIn, signedInUser, onSignedIn, route, match } = this.props;
         return (
+            <BrowserRouter>
+            <Switch>
             <div className="container">
                 {/* <ErrorBoundry> */}
                 <Navbar onRouteChange={onRouteChange} isSignedIn={isSignedIn} signedInUser={signedInUser} />
@@ -99,6 +102,8 @@ class SmartBrain extends React.Component {
                 }
                 {/* </ErrorBoundry> */}
             </div>
+            </Switch>
+            </BrowserRouter>
         );
     }
 }
