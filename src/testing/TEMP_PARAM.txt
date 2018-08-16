@@ -1,0 +1,2 @@
+commented compononetDidMount in SmartBrainAuthenticateSignin.js
+changed isSignedIn: true for testing

@@ -1,20 +1,29 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import { Provider } from 'react-redux';
-import { createLogger } from 'redux-logger';
-import thunkMiddleware from 'redux-thunk';
-import { signinStatus, imageDetection } from 'reducers';
-import Projects from 'containers/Projects';
-import registerServiceWorker from 'registerServiceWorker';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { Provider } from 'react-redux'
+import { createLogger } from 'redux-logger'
+import thunkMiddleware from 'redux-thunk'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+
+import { signinStatus, RegisterUser,imageDetection } from 'reducers'
+import Project from 'containers/Project/cProject'
+import registerServiceWorker from 'registerServiceWorker'
+
+
 
 const logger = createLogger();
-const rootReducers = combineReducers({signinStatus, imageDetection});
+const rootReducers = combineReducers({ signinStatus, RegisterUser, imageDetection });
 const store = createStore(rootReducers, applyMiddleware(thunkMiddleware, logger));
 
-ReactDOM.render(
-    <Provider store={store}>
-    <Projects/>
-     </Provider>,document.querySelector("#page-wrapper")
-  );
+ReactDOM.render((
+  <BrowserRouter>
+  <Switch>
+      <Provider store={store}>
+        <Route path="/" component={Project}/>
+      </Provider>
+      </Switch>
+      </BrowserRouter>
+), document.querySelector("#page-wrapper")
+);
 registerServiceWorker();
