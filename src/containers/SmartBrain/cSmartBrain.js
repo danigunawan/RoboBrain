@@ -1,15 +1,15 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import Clarifai from 'clarifai'
-import { BrowserRouter, Switch, Route } from 'react-router'
+import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom'
 
-// import { ImageLinkForm } from 'components/AppSmartBrain/ImageLinkForm/ImageLinkForm';
-// import { FaceRecognition } from 'components/AppSmartBrain/FaceRecognition/FaceRecognition';
+import ImageForm from 'components/SmartBrain/Recognition/SmartBrainRecognitionImageLink';
+import FaceRecog from 'components/SmartBrain/Recognition/SmartBrainRecognitionBox';
 import SignIn from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateSignIn'
-// import { Register } from 'components/AppSmartBrain/Authentication/Register';
+import Register from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateRegister'
 import { Navbar } from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateNavbar'
-import {SIGNOUT,SIGNIN,REGISTER,URLSERVER} from 'constans'
-import { setRoute} from 'actions'
+import { SIGNOUT, SIGNIN, REGISTER, URLSERVER } from 'constans'
+import { setRoute, setRecogBox } from 'actions'
 import './cSmartBrain.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -19,45 +19,47 @@ const app = new Clarifai.App({
     apiKey: 'ab9f18e9276a4f9b94f742a30c3f3103'
 });
 
-const mapStateToProps=(state)=>{
-    return{
+const mapStateToProps = (state) => {
+    return {
         inputURL: state.imageDetection.inputURL,
         box: state.imageDetection.box,
         route: state.signinStatus.route,
         isSignedIn: state.signinStatus.isSignedIn,
-        signedInUser: state.signinStatus.signedInUser
+        signedInUser: state.signinStatus.signedInUser,
+        isSignedIn: state.signinStatus.isSignedIn,
+        inputURL: state.imageDetection.inputURL,
+        box: state.imageDetection.box
     }
 }
 
-const mapDispatchToProps = (dispatch)=>{
-    return{
+const mapDispatchToProps = (dispatch) => {
+    return {
         onRouteChange: (route) => dispatch(setRoute(route)),
-        onSignedIn: (status, user)=> dispatch({isSignedIn: status, signedInUser: user})
+        onSignedIn: (status, user) => dispatch({ isSignedIn: status, signedInUser: user }),
+        setRecogBox: (box)=> dispatch(setRecogBox(box))
     }
 }
 
 class SmartBrain extends React.Component {
-
     onInputChange = (event) => {
         this.setState({ inputURL: event.target.value });
     }
 
     onSubmitButton = () => {
-        app.models.predict(Clarifai.FACE_DETECT_MODEL, this.state.inputURL)
+        app.models.predict(Clarifai.FACE_DETECT_MODEL, this.props.inputURL)
             .then(response => {
-
-                fetch(URLSERVER+'/image', {
+                fetch(URLSERVER + '/image', {
                     method: 'put',
                     headers: {
                         'Content-Type': 'application/json',
                         'Accept': 'application/json, text/plain, */*'
 
                     },
-                    body: JSON.stringify({ id: this.state.signedInUser.id })
+                    body: JSON.stringify({ id: this.props.signedInUser.id })
                 })
                     .then(res => res.json())
                     .then(entries => {
-                        this.setState(Object.assign(this.state.signedInUser, { entries: entries }));
+                        this.setState(Object.assign(this.props.signedInUser, { entries: entries }));
                     })
                     .catch(err => console.log(err));
 
@@ -67,7 +69,8 @@ class SmartBrain extends React.Component {
     }
 
     displayFaceBox = (box) => {
-        this.setState({ box: box });
+        // this.setState({ box: box });
+        setRecogBox(box);
     }
 
     calculateFaceLocation = (data) => {
@@ -88,21 +91,27 @@ class SmartBrain extends React.Component {
     }
 
     render() {
-        const { onRouteChange, isSignedIn, signedInUser, onSignedIn, route, match } = this.props;
+        const { isSignedIn, signedInUser, onSignedIn } = this.props;
         return (
             <BrowserRouter>
-            <Switch>
-            <div className="container">
-                {/* <ErrorBoundry> */}
-                <Navbar onRouteChange={onRouteChange} isSignedIn={isSignedIn} signedInUser={signedInUser} />
-                {route === SIGNIN
-                    ? <SignIn onRouteChange={onRouteChange} onSignedIn={onSignedIn} URLSERVER={URLSERVER} />
-                    : <h1>TO IMPLEMNT REGISTER</h1>
-                 
-                }
-                {/* </ErrorBoundry> */}
-            </div>
-            </Switch>
+                <Switch>
+                    <div className="container">
+                        <Navbar isSignedIn={isSignedIn} signedInUser={signedInUser} />
+                        {isSignedIn
+                            ? <div>
+                                <ImageForm />
+                                <FaceRecog />
+                            </div>
+                            : <Redirect to="/projects/smartbrain/signin" />
+                        }
+                        <Route path="/projects/smartbrain/signin" render={() => (
+                                    <SignIn onSignedIn={onSignedIn} URLSERVER={URLSERVER} />
+                                )} />
+                        <Route path="/projects/smartbrain/register" render={() => (
+                            <Register />
+                        )} />
+                    </div>
+                </Switch>
             </BrowserRouter>
         );
     }

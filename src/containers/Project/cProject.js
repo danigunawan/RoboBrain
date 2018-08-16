@@ -38,21 +38,17 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 class Project extends React.Component {
-    componentDidMount() {
-        this.props.onRouteChange(PROJECT_MAINPAGE);
-    }
-
+   
     render() {
         const { route, onRouteChange, match } = this.props;
         const applist = (match) => appInfo.map((app, index) => {
             return <Card appImage={app.Image} appTitle={app.Title} appText={app.Text} appRoute={app.route} match={match} />
         })
-
         return (
             <BrowserRouter>
                 <Switch>
                     <div>
-                        <Navbar/>
+                        <Navbar />
                         <div className="project-card-container container">
                             <Route exact path="/" render={({ match }) => (
                                 <div className="row">

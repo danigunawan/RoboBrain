@@ -1,8 +1,10 @@
-import React from 'react';
-import {SIGNOUT,SIGNIN,REGISTER} from 'constans';
-import './SmartBrainAuthenticateNavbar.css';
-import logo from './icons8-physics-64.png';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+import {SIGNOUT,SIGNIN,REGISTER} from 'constans'
+import './SmartBrainAuthenticateNavbar.css'
+import logo from './icons8-physics-64.png'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 
 export class Navbar extends React.Component {
@@ -29,8 +31,8 @@ export class Navbar extends React.Component {
                         <img src={logo} alt="icon physics" />
                     </div>
                     <div className="row col-md-3" id="SignIn">
-                        <a href="#" onClick={() => onRouteChange(SIGNIN)}>Sign In</a>
-                        <a href="#" onClick={() => onRouteChange(REGISTER)}>Register</a>
+                        <Link to="/projects/smartbrain/signin">Sign In</Link>
+                        <Link to="/projects/smartbrain/register">Register</Link>
                     </div>
                 </div>
             );

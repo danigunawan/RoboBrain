@@ -1,60 +1,59 @@
-import React from 'react';
+import React from 'react'
+import { connect } from 'react-redux'
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { URLSERVER } from 'constans'
+import { setRegisterParam } from 'actions'
+import 'bootstrap/dist/css/bootstrap.min.css'
 
+const mapStateToProps = (state) => {
+    return {
+        name: state.RegisterUser.name,
+        email: state.RegisterUser.email,
+        password: state.RegisterUser.password,
+        confirmPassword: state.RegisterUser.confirmPassword,
+        isRegistered: state.RegisterUser.isRegistered
+    }
+}
 
-export class Register extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            name: "",
-            email: "",
-            password: "",
-            confirmPassword: ""
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setRegisterParam: (param, event) => {
+            if (param === 'isRegistered') {
+                return dispatch(setRegisterParam(param, true));
+            } else {
+                return dispatch(setRegisterParam(param, event.target.value));
+            }
         }
     }
+}
+
+class Register extends React.Component {
 
     onSubmit = (event) => {
         event.preventDefault();
 
-        if (this.state.password !== this.state.confirmPassword) {
+        if (this.props.password !== this.props.confirmPassword) {
             return alert('password and confirm-password is not the same');
         }
 
-        fetch(this.props.urlServer+'/register', {
+        fetch(URLSERVER + '/register', {
             method: 'post',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json, text/plain, */*'
             },
-            body: JSON.stringify(this.state)
+            body: JSON.stringify(this.props)
         })
             .then(res => {
                 if (res.status === 200) {
                     res.json();
-                    this.props.onRouteChange('signin');
+                    setRegisterParam('isRegistered');
                 } else {
                     throw new Error('email already used');
                 }
             })
-            .then(data => console.log(data))    
+            .then(data => console.log(data))
             .catch(err => alert(err))
-    }
-
-    onInputName = (event) => {
-        this.setState({ name: event.target.value });
-    }
-
-    onInputEmail = (event) => {
-        this.setState({ email: event.target.value });
-    }
-
-    onInputPassword = (event) => {
-        this.setState({ password: event.target.value });
-    }
-
-    onInputConfirmPassword = (event) => {
-        this.setState({ confirmPassword: event.target.value });
     }
 
     render() {
@@ -62,34 +61,34 @@ export class Register extends React.Component {
             <div className="container-fluid bg-light py-3">
                 <div className="row">
                     <div className="col-md-6 mx-auto">
-                        <div className="card card-body">
-                            <form onSubmit={this.onSubmit}>
+                        <form onSubmit={this.onSubmit}>
                             <h3 className="text-center mb-4">Sign-up</h3>
                             <fieldset>
                                 <div className="form-group has-error">
-                                    <input className="form-control input-lg" placeholder="Name" name="name" type="text" required onChange={this.onInputName} />
+                                    <input className="form-control input-lg" placeholder="Name" name="name" type="text" required onChange={setRegisterParam('name')} />
                                 </div>
                                 <div className="form-group has-error">
-                                    <input className="form-control input-lg" placeholder="E-mail Address" name="email" type="text" required onChange={this.onInputEmail} />
+                                    <input className="form-control input-lg" placeholder="E-mail Address" name="email" type="text" required onChange={setRegisterParam('email')} />
                                 </div>
                                 <div className="form-group has-success">
-                                    <input className="form-control input-lg" placeholder="Password" name="password" type="password" required onChange={this.onInputPassword} />
+                                    <input className="form-control input-lg" placeholder="Password" name="password" type="password" required onChange={setRegisterParam('password')} />
                                 </div>
                                 <div className="form-group has-success">
-                                    <input className="form-control input-lg" placeholder="Confirm Password" name="password" type="password" required onChange={this.onInputConfirmPassword} />
+                                    <input className="form-control input-lg" placeholder="Confirm Password" name="password" type="password" required onChange={setRegisterParam('confirmPassword')} />
                                 </div>
                                 <div className="checkbox">
                                     <label className="small">
-                                        <input name="terms" id="terms" type="checkbox" required/> I have read and agree to the <a href="#">terms of service</a>
+                                        <input name="terms" id="terms" type="checkbox" required /> I have read and agree to the <a href="#">terms of service</a>
                                     </label>
                                 </div>
-                                <input className="btn btn-lg btn-primary btn-block" value="Register" type="submit"/>
+                                <input className="btn btn-lg btn-primary btn-block" value="Register" type="submit" />
                             </fieldset>
-                            </form>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -6,14 +6,14 @@ import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { signinStatus, imageDetection } from 'reducers'
+import { signinStatus, RegisterUser,imageDetection } from 'reducers'
 import Project from 'containers/Project/cProject'
 import registerServiceWorker from 'registerServiceWorker'
 
 
 
 const logger = createLogger();
-const rootReducers = combineReducers({ signinStatus, imageDetection });
+const rootReducers = combineReducers({ signinStatus, RegisterUser, imageDetection });
 const store = createStore(rootReducers, applyMiddleware(thunkMiddleware, logger));
 
 ReactDOM.render((
