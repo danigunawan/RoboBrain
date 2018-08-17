@@ -10,7 +10,6 @@ import Register from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateR
 import { Navbar } from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateNavbar'
 import { SIGNOUT, SIGNIN, REGISTER, URLSERVER } from 'constans'
 import { setRoute, setRecogBox } from 'actions'
-import './cSmartBrain.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 

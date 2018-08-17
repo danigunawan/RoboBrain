@@ -1,5 +1,5 @@
 import React from 'react'
-import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './Navbar.css'
@@ -23,10 +23,10 @@ export class Navbar extends React.Component {
                                 Home<span className="sr-only">(current)</span>
                             </Link>
                             </li>
-                            <li className="nav-item dropdown">Projects
+                            <li className="nav-item" id="dropdown">Projects
                                 <div className="dropdown-content">
                                     <Link to="/projects/robofriend" className="dropdown-item">RoboFriend</Link>
-                                    <Link to="/projects/smartbrain" className="dropdown-item" >SmartBrain</Link>
+                                    <Link to="/projects/smartbrain" className="dropdown-item">SmartBrain</Link>
                                 </div>
                             </li>
                             <li className="nav-item"><Link to="/About">

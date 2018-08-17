@@ -10,14 +10,14 @@ export class Card extends React.Component {
         const { appImage, appTitle, appText, appRoute, match } = this.props;
         
         return (
-            <div className="card-container col-md-4 col-sm-6"><Link to={appRoute}>
+            <div className="card-container container col-md-4 text-center">
                     <div class="card">
-                        <img class="card-img-top" src={appImage} alt="Card"></img>
+                    <Link to={appRoute}><img class="card-img-top" src={appImage} alt="Card"></img></Link>
                         <div class="card-body">
                             <h5 class="card-title">{appTitle}</h5>
                             <p class="card-text">{appText}</p>
                         </div>
-                    </div></Link>
+                    </div>
             </div>
         );
     }
