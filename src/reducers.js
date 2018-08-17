@@ -1,6 +1,8 @@
-import {USER_SIGNIN, USER_SIGNIN_FAIL, IMAGE_URL_CHANGE, ON_ROUTE_CHANGE
-,SET_REGISTER_PARAM, SET_IMAGE_URL,SET_RECOG_BOX } from 'constans'
+import {USER_SIGNIN, ON_ROUTE_CHANGE,SET_REGISTER_PARAM, SET_IMAGE_URL,SET_RECOG_BOX
+,  CHANGE_SEARCH_FIELD, REQUEST_ROBOTS_SUCCESS, REQUEST_ROBOTS_FAIL, REQUEST_ROBOTS_PENDING } from 'constans'
 
+
+// SmartBrain
 const initialSigninStatus={
     isSignedIn: true,
     signedInUser: {},
@@ -16,8 +18,6 @@ export const signinStatus = (state=(initialSigninStatus), action={})=>{
             return Object.assign({}, state, {route: action.payload});
         case USER_SIGNIN:
             return Object.assign({}, state, {isSignedIn: action.payload.boolean, signinUser: action.payload.user});
-        // case USER_SIGNIN_FAIL:
-        //     return Object.assign({}, state, {isSignedIn:false});
         default:
             return state;
     }
@@ -56,6 +56,38 @@ export const imageDetection=(state=(initialImageDetection), action={})=>{
             return Object.assign({}, state, { inputURL:action.payload});
         case SET_RECOG_BOX:
         return Object.assign({}, state, { box:action.payload});
+        default:
+            return state;
+    }
+}
+
+// RoboFriend
+const initialStateSearch = {
+    searchField: ''
+}
+
+export const searchRobots = (state = initialStateSearch, action = {}) => {
+    switch (action.type) {
+        case CHANGE_SEARCH_FIELD:
+            return Object.assign({}, state, { searchField: action.payload });
+        default:
+            return state;
+    }
+}
+
+export const initialStateRobots = {
+    isPending: false,
+    robots: []
+}
+
+export const requestRobots = (state = initialStateRobots, action = {}) => {
+    switch (action.type) {
+        case REQUEST_ROBOTS_SUCCESS:
+            return Object.assign({}, state, { robots: action.payload, isPending: false });
+        case REQUEST_ROBOTS_FAIL:
+            return Object.assign({}, state, { error: action.payload, isPending: false });
+        case REQUEST_ROBOTS_PENDING:
+            return Object.assign({}, state, { isPending: true });
         default:
             return state;
     }

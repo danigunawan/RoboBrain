@@ -3,24 +3,26 @@ import { connect } from 'react-redux'
 import { setRoute } from 'actions'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { PROJECT_MAINPAGE, APP_ROBOFRIEND, APP_SMARTBRAIN } from 'constans';
 import { Card } from 'components/Card/Card';
 import { Navbar } from 'components/Navbar/Navbar';
+import Robo from 'containers/Robo/cRobo';
 import SmartBrain from 'containers/SmartBrain/cSmartBrain';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './cProject.css';
+import roboLogo from 'containers/Robo/robofriend.png';
+import brainLogo from 'containers/SmartBrain/smartbrain.png'
 
 const appInfo = [
     {
-        Image: '',
+        Image: roboLogo,
         Title: 'RoboFriend',
-        Text: '',
+        Text: 'Funny list of happy robots',
         route: '/projects/robofriend'
     },
     {
-        Image: '',
+        Image: brainLogo,
         Title: 'SmartBrain',
-        Text: '',
+        Text: 'Face detection using API',
         route: '/projects/smartbrain'
     }
 ]
@@ -40,7 +42,6 @@ const mapDispatchToProps = (dispatch) => {
 class Project extends React.Component {
    
     render() {
-        const { route, onRouteChange, match } = this.props;
         const applist = (match) => appInfo.map((app, index) => {
             return <Card appImage={app.Image} appTitle={app.Title} appText={app.Text} appRoute={app.route} match={match} />
         })
@@ -56,7 +57,9 @@ class Project extends React.Component {
                                 </div>
                             )} />
                             <Route exact path="/projects/robofriend" render={() => (
-                                <div className="robofriend">ROBO FRIEND APP WILL BE INSERTED HERE</div>)}
+                                <div className="container">
+                                    <Robo />
+                                </div>)}
                             />
                             <Route exact path="/projects/smartbrain" render={({ match }) => (
                                 <SmartBrain match={match} />

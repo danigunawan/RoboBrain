@@ -1,6 +1,6 @@
 .card{
-    min-height: 380px;
-    min-width: 150px;
+    height: 350px;
+    min-width: 200px;
     margin: 5px 5px;
     transition: all .1s ease;
 }
