@@ -8,8 +8,8 @@ import FaceRecog from 'components/SmartBrain/Recognition/SmartBrainRecognitionBo
 import SignIn from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateSignIn'
 import Register from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateRegister'
 import { Navbar } from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateNavbar'
-import { SIGNOUT, SIGNIN, REGISTER, URLSERVER } from 'constans'
-import { setRoute, setRecogBox } from 'actions'
+import { URLSERVER } from 'constans'
+import { setRoute, setRecogBox } from 'containers/SmartBrain/aSmartBrain'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 

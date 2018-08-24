@@ -2,8 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { BrowserRouter, Switch, Redirect } from 'react-router-dom'
 
-import { onSignIn } from 'actions'
-import { APP_SMARTBRAIN, URLSERVER } from 'constans'
+import { onSignIn } from 'containers/SmartBrain/aSmartBrain'
+import { URLSERVER } from 'constans'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 

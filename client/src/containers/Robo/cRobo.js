@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setSearchField, requestRobots } from 'actions';
+import { setSearchField, requestRobots } from 'containers/Robo/aRobo';
 import { CardList } from 'components/Robo/RoboCardList';
 import { SearchBox } from 'components/Robo/RoboSearchBox';
 import 'bootstrap/dist/css/bootstrap.min.css';

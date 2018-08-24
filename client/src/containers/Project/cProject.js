@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { setRoute } from 'actions'
+import { setRoute } from 'containers/SmartBrain/aSmartBrain'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import { Card } from 'components/Card/Card';
@@ -9,8 +9,8 @@ import Robo from 'containers/Robo/cRobo';
 import SmartBrain from 'containers/SmartBrain/cSmartBrain';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './cProject.css';
-import roboLogo from 'containers/Robo/robofriend.png';
-import brainLogo from 'containers/SmartBrain/smartbrain.png'
+import roboLogo from 'containers/Robo/img/robofriend.png';
+import brainLogo from 'containers/SmartBrain/img/smartbrain.png'
 
 const appInfo = [
     {

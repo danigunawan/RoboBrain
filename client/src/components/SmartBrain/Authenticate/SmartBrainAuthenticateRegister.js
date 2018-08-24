@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 import { URLSERVER } from 'constans'
-import { setRegisterParam } from 'actions'
+import { setRegisterParam } from 'containers/SmartBrain/aSmartBrain'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 const mapStateToProps = (state) => {
