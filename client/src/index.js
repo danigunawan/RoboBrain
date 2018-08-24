@@ -6,7 +6,8 @@ import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import { signinStatus, RegisterUser,imageDetection, searchRobots, requestRobots } from 'reducers'
+import { searchRobots, requestRobots } from 'containers/Robo/rRobo'
+import { signinStatus, RegisterUser,imageDetection } from 'containers/SmartBrain/rSmartBrain'
 import Project from 'containers/Project/cProject'
 import registerServiceWorker from 'registerServiceWorker'
 

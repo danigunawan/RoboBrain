@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 
-import {setImageURL} from 'actions'
+import {setImageURL} from 'containers/SmartBrain/aSmartBrain'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './SmartBrainRecognitionImageLink.css'
 
