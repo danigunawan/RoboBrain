@@ -25,9 +25,6 @@ const mapStateToProps = (state) => {
         route: state.signinStatus.route,
         isSignedIn: state.signinStatus.isSignedIn,
         signedInUser: state.signinStatus.signedInUser,
-        isSignedIn: state.signinStatus.isSignedIn,
-        inputURL: state.imageDetection.inputURL,
-        box: state.imageDetection.box
     }
 }
 
@@ -98,7 +95,7 @@ class SmartBrain extends React.Component {
                         <Navbar isSignedIn={isSignedIn} signedInUser={signedInUser} />
                         {isSignedIn
                             ? <div>
-                                <ImageForm />
+                                <ImageForm onSubmitButton={this.onSubmitButton}/>
                                 <FaceRecog />
                             </div>
                             : <Redirect to="/projects/smartbrain/signin" />
