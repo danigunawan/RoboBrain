@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { createStore, applyMiddleware, combineReducers } from 'redux'
+import { createStore, applyMiddleware, combineReducers      } from 'redux'
 import { Provider } from 'react-redux'
 import { createLogger } from 'redux-logger'
 import thunkMiddleware from 'redux-thunk'
@@ -10,7 +10,6 @@ import { searchRobots, requestRobots } from 'containers/Robo/rRobo'
 import { signinStatus, RegisterUser,imageDetection } from 'containers/SmartBrain/rSmartBrain'
 import Project from 'containers/Project/cProject'
 import registerServiceWorker from 'registerServiceWorker'
-
 
 
 const logger = createLogger();
