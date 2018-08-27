@@ -9,7 +9,7 @@ import SignIn from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateSig
 import Register from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateRegister'
 import { Navbar } from 'components/SmartBrain/Authenticate/SmartBrainAuthenticateNavbar'
 import { URLSERVER } from 'constans'
-import { setRoute, setRecogBox } from 'containers/SmartBrain/aSmartBrain'
+import { setRoute, setRecogBox,setImageURL } from 'containers/SmartBrain/aSmartBrain'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
@@ -32,7 +32,8 @@ const mapDispatchToProps = (dispatch) => {
     return {
         onRouteChange: (route) => dispatch(setRoute(route)),
         onSignedIn: (status, user) => dispatch({ isSignedIn: status, signedInUser: user }),
-        setRecogBox: (box)=> dispatch(setRecogBox(box))
+        setRecogBox: (box)=> dispatch(setRecogBox(box)),
+        setImageURL: (event) => dispatch(setImageURL(event.target.value))
     }
 }
 
@@ -88,6 +89,7 @@ class SmartBrain extends React.Component {
 
     render() {
         const { isSignedIn, signedInUser, onSignedIn } = this.props;
+        console.log('SmartBrain start');
         return (
             <BrowserRouter>
                 <Switch>
@@ -95,8 +97,8 @@ class SmartBrain extends React.Component {
                         <Navbar isSignedIn={isSignedIn} signedInUser={signedInUser} />
                         {isSignedIn
                             ? <div>
-                                <ImageForm onSubmitButton={this.onSubmitButton}/>
-                                <FaceRecog />
+                                <ImageForm onSubmitButton={this.onSubmitButton} setImageURL={this.props.setImageURL}/>
+                                <FaceRecog inputURL={this.props.inputURL} box={this.props.box}/>
                             </div>
                             : <Redirect to="/projects/smartbrain/signin" />
                         }

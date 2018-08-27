@@ -6,8 +6,6 @@ import Loadable from 'react-loadable';
 
 import { Card } from "components/Card/Card";
 import { Navbar } from "components/Navbar/Navbar";
-// import Robo from "containers/Robo/cRobo";
-// import SmartBrain from "containers/SmartBrain/cSmartBrain";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./cProject.css";
 import roboLogo from "containers/Robo/img/robofriend.png";
@@ -40,11 +38,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const TIMEOUT = 10000;
 const Loading = ()=>{
   return <div>Loading...</div>;
 }
-
-const TIMEOUT = 10000;
 
 const Loadable_Robo = Loadable({
   loader: () => import('containers/Robo/cRobo'),
@@ -75,10 +72,12 @@ class Project extends React.Component {
         );
       });
 
+    console.log('Project start');
+
     return (
       <BrowserRouter>
         <Switch>
-          <div>
+          <div className="container">
             <Navbar/>
             <div className="project-card-container container">
               <Route exact path="/" render={({ match }) => (
