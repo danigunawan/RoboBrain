@@ -5,11 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import './Navbar.css'
 
 export class Navbar extends React.Component {
+    shouldComponentUpdate=(nextProps, nextState)=>{
+        return false;
+    }
+
     render() {
         return (
             <header className="container">
-
-
                 <nav className="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
                     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossOrigin="anonymous"></link>
                     <i id="navbar-brand" className="fas fa-blind fa-2x"></i>

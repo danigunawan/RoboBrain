@@ -1,4 +1,4 @@
-import {CHANGE_SEARCH_FIELD, REQUEST_ROBOTS_SUCCESS, REQUEST_ROBOTS_FAIL, REQUEST_ROBOTS_PENDING } from 'constans'
+import {CHANGE_SEARCH_FIELD, REQUEST_ROBOTS_SUCCESS, REQUEST_ROBOTS_FAIL } from 'constans'
     
 
 const initialStateSearch = {
@@ -25,8 +25,6 @@ export const requestRobots = (state = initialStateRobots, action = {}) => {
             return Object.assign({}, state, { robots: action.payload, isPending: false });
         case REQUEST_ROBOTS_FAIL:
             return Object.assign({}, state, { error: action.payload, isPending: false });
-        case REQUEST_ROBOTS_PENDING:
-            return Object.assign({}, state, { isPending: true });
         default:
             return state;
     }

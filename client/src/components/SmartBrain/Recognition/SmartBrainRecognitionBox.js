@@ -1,25 +1,11 @@
 import React from 'react'
-import { connect } from 'react-redux'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 import './SmartBrainRecognitionBox.css'
 
 
-const mapStateToProps = (state) => {
-    return {
-        inputURL: state.imageDetection.inputURL,
-        box: state.imageDetection.box
-    }
 
-}
-
-const mapDispatchToProps=(dispatch)=>{
-    return{
-
-    }
-}
-
-class FaceRecog extends React.Component {
+class FaceRecog extends React.PureComponent {
 
     render() {
         const { inputURL, box } = this.props;
@@ -41,4 +27,4 @@ class FaceRecog extends React.Component {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(FaceRecog);
+export default FaceRecog;

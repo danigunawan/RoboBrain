@@ -1,25 +1,13 @@
 import React from "react";
-import { connect } from "react-redux";
 
-import { setImageURL } from "containers/SmartBrain/aSmartBrain";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./SmartBrainRecognitionImageLink.css";
 
-const mapStateToProps = state => {
-  return {
-    inputURL: state.imageDetection.inputURL
-  };
-};
 
-const mapDispatchToProps = dispatch => {
-  return {
-    setImageURL: event => dispatch(setImageURL(event.target.value))
-  };
-};
 
-class ImageForm extends React.Component {
+class ImageForm extends React.PureComponent {
   render() {
-    const { setImageURL } = this.props;
+    const { setImageURL,onSubmitButton} = this.props;
     return (
       <div className="container text-center" id="inputForm">
         <h5>Detect Faces In Picture</h5>
@@ -37,7 +25,7 @@ class ImageForm extends React.Component {
           <button
             type="button"
             className="btn btn-primary"
-            onClick={this.props.onSubmitButton}
+            onClick={onSubmitButton}
           >
             Detect
           </button>
@@ -47,7 +35,4 @@ class ImageForm extends React.Component {
   }
 }
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(ImageForm);
+export default ImageForm;
