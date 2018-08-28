@@ -6,7 +6,6 @@ import Loadable from 'react-loadable';
 
 import { Card } from "components/Card/Card";
 import { Navbar } from "components/Navbar/Navbar";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./cProject.css";
 import roboLogo from "containers/Robo/img/robofriend.png";
 import brainLogo from "containers/SmartBrain/img/smartbrain.png";

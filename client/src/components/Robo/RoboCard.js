@@ -1,7 +1,7 @@
 import React from 'react';
 
 import './RoboCard.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
+ 
 
 
 export class Card extends React.Component {

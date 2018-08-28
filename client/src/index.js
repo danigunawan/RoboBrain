@@ -5,7 +5,7 @@ import { Provider } from "react-redux";
 import { createLogger } from "redux-logger";
 import thunkMiddleware from "redux-thunk";
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-
+import "bootstrap/dist/css/bootstrap.min.css";
 import { searchRobots, requestRobots } from 'containers/Robo/rRobo';
 import { signinStatus, RegisterUser, imageDetection } from 'containers/SmartBrain/rSmartBrain';
 import Project from 'containers/Project/cProject';
