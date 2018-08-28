@@ -1,7 +1,6 @@
 import {CHANGE_SEARCH_FIELD,
     REQUEST_ROBOTS_SUCCESS,
-    REQUEST_ROBOTS_FAIL,
-    REQUEST_ROBOTS_PENDING} from 'constans';
+    REQUEST_ROBOTS_FAIL} from 'constans';
 
 
     export const setSearchField = (text) => {
@@ -12,8 +11,6 @@ import {CHANGE_SEARCH_FIELD,
     }
     
     export const requestRobots=()=>(dispatch)=>{
-        dispatch({ type: REQUEST_ROBOTS_PENDING });
-    
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response=> response.json())
             .then(users=> {

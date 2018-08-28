@@ -4,6 +4,24 @@ import { Link } from 'react-router-dom'
 import './Card.css'
 
 export class Card extends React.Component {
+    constructor(){
+        super();
+        this.state={
+            appImage: '',
+            appTitle:'',
+            appText:'',
+            appRoute:'',
+            match: ''
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState){
+        if(nextProps!==this.state){
+            Object.assign(this.state, nextProps);
+            return true;
+        }
+        return false;
+    }
 
     render() {
         const { appImage, appTitle, appText, appRoute, match } = this.props;

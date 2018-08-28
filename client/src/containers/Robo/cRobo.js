@@ -36,6 +36,8 @@ class Robo extends React.Component {
             return iter.name.toLowerCase().includes(searchField.toLowerCase());
         })
 
+        console.log('Robo start');
+
         return (
             <div className="container text-center">
                 <h1>RoboFriends</h1>

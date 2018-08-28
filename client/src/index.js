@@ -24,6 +24,11 @@ const store = createStore(
   applyMiddleware(thunkMiddleware, logger),
 );
 
+if (process.env.NODE_ENV !== 'production') {
+  const {whyDidYouUpdate} = require('why-did-you-update');
+  whyDidYouUpdate(React);
+}
+
 ReactDOM.render(
   <BrowserRouter>
     <Switch>

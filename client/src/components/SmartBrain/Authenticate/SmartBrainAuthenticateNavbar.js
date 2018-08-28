@@ -7,7 +7,7 @@ import logo from './icons8-physics-64.png'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
-export class Navbar extends React.Component {
+export class Navbar extends React.PureComponent {
 
     render() {
         const { onRouteChange, isSignedIn, signedInUser } = this.props;

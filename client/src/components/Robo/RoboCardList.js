@@ -4,12 +4,12 @@ import {Card} from 'components/Robo/RoboCard';
  
 
 
-export class CardList extends React.Component{
+export class CardList extends React.PureComponent{
 
     render(){
         const card = this.props.items.map((ite, index)=>{
             return (
-                <Card card={ite}/>
+                <Card card={ite} key={index}/>
             );
         })
 

@@ -4,6 +4,10 @@ import { Link } from 'react-router-dom'
 import './Navbar.css'
 
 export class Navbar extends React.Component {
+    shouldComponentUpdate=(nextProps, nextState)=>{
+        return false;
+    }
+
     render() {
         return (
             <header className="container">

@@ -37,11 +37,10 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
+const TIMEOUT = 10000;
 const Loading = ()=>{
   return <div>Loading...</div>;
 }
-
-const TIMEOUT = 10000;
 
 const Loadable_Robo = Loadable({
   loader: () => import('containers/Robo/cRobo'),
@@ -72,10 +71,12 @@ class Project extends React.Component {
         );
       });
 
+    console.log('Project start');
+
     return (
       <BrowserRouter>
         <Switch>
-          <div>
+          <div className="container">
             <Navbar/>
             <div className="project-card-container container">
               <Route exact path="/" render={({ match }) => (
