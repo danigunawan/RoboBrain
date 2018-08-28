@@ -11,11 +11,11 @@ export class Card extends React.Component {
         
         return (
             <div className="card-container container col-md-4 text-center">
-                    <div class="card">
-                    <Link to={appRoute}><img class="card-img-top" src={appImage} alt="Card"></img></Link>
-                        <div class="card-body">
-                            <h5 class="card-title">{appTitle}</h5>
-                            <p class="card-text">{appText}</p>
+                    <div className="card">
+                    <Link to={appRoute}><img className="card-img-top" src={appImage} alt="Card"></img></Link>
+                        <div className="card-body">
+                            <h5 className="card-title">{appTitle}</h5>
+                            <p className="card-text">{appText}</p>
                         </div>
                     </div>
             </div>
