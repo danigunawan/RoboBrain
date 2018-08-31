@@ -1,6 +1,4 @@
-import {CHANGE_SEARCH_FIELD,
-    REQUEST_ROBOTS_SUCCESS,
-    REQUEST_ROBOTS_FAIL} from 'constans';
+import {CHANGE_SEARCH_FIELD,REQUEST_ROBOTS_SUCCESS,REQUEST_ROBOTS_FAIL} from 'constans';
 
 
     export const setSearchField = (text) => {
