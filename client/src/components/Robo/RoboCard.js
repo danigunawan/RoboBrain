@@ -1,8 +1,5 @@
 import React from 'react';
-
 import './RoboCard.css';
- 
-
 
 export class Card extends React.Component {
     render() {
