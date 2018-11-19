@@ -1,0 +1,13 @@
+#inputForm{
+    justify-content: center;
+    margin-top: 60px;
+}
+
+#inputURL{
+    min-width: 40rem;
+    border: 1px solid black;
+}
+
+button{
+    margin-left: .5rem;
+}
