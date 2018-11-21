@@ -3,15 +3,17 @@ const bodyParser = require('body-parser');
 const bcrypt = require('bcrypt');
 const cors = require('cors');
 const knex = require('knex');
+const winston = require('winston');
 const register = require('./controllers/register.js');
 const signin = require('./controllers/signin.js');
+
 
 "use strict";
 
 const app = express();
 app.use(bodyParser.json());
 
-const port = 3000;
+const port = 4000;
 app.listen(process.env.PORT || port, () => {
     console.log(`app is running on port ${process.env.PORT}`);
 })
@@ -24,6 +26,15 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
+const logger = winston.createLogger({
+    level: 'info',
+    format: winston.format.json(),
+    transport: [
+        new winston.transports.Console(),
+        new winston.transports.File({ filename: 'server.log' })
+    ]
+});
+
 const db = knex({
     client: 'pg',
     connection:{
@@ -34,6 +45,7 @@ const db = knex({
 
 app.get('/', (req, res) => {
     res.send('This is homepage');
+    logger.info('This is homepage');
 })
 
 app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) });
