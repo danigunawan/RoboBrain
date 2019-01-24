@@ -59,10 +59,12 @@ const initialImageDetection = {
 };
 
 export const imageDetection = (state = initialImageDetection, action = {}) => {
+  console.log('imageDetection r')
   switch (action.type) {
     case SET_IMAGE_URL:
       return Object.assign({}, state, { inputURL: action.payload });
     case SET_RECOG_BOX:
+      console.log('SET_RECOG_BOX');
       return Object.assign({}, state, { box: action.payload });
     default:
       return state;

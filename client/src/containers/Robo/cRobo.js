@@ -21,14 +21,15 @@ const mapDispatchToProps = dispatch => {
 };
 
 export class Robo extends React.Component {
-  filterRobots = () => {
-    return this.props.robots.filter((iter, index) => {
-      return iter.name.toLowerCase().includes(this.props.searchField.toLowerCase());
-    });
+  componentDidMount() {
+    this.props.onRequestRobots();
   }
 
   render() {
-    const { onSearchChange } = this.props;
+    const { robots, onSearchChange } = this.props;
+    const filterRobots = robots.filter((robot, index) => {
+      return robot.name.toLowerCase().includes(this.props.searchField.toLowerCase());
+    });
 
     return (
       <div className="container text-center">
@@ -37,15 +38,11 @@ export class Robo extends React.Component {
           <SearchBox onSearchChange={onSearchChange} />
         </div>
         <div className="container">
-          <CardList items={this.filterRobots} />
+          <CardList items={filterRobots} />
         </div>
       </div>
     );
   }
-
-  componentDidMount() {
-    this.props.onRequestRobots();
-  }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Robo);
+export default connect(mapStateToProps, mapDispatchToProps)(Robo);

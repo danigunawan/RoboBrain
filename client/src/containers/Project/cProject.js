@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { setRoute } from "containers/SmartBrain/aSmartBrain";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Loadable from 'react-loadable';
-
 import { Card } from "components/Card/Card";
 import { Navbar } from "components/Navbar/Navbar";
 import "./cProject.css";

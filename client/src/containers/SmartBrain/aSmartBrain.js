@@ -42,6 +42,7 @@ export const setImageURL = value => {
 };
 
 export const setRecogBox = box => {
+  console.log('box a', box);
   return {
     type: SET_RECOG_BOX,
     payload: box

@@ -12,6 +12,7 @@ import {CHANGE_SEARCH_FIELD,REQUEST_ROBOTS_SUCCESS,REQUEST_ROBOTS_FAIL} from 'co
         fetch('https://jsonplaceholder.typicode.com/users')
             .then(response=> response.json())
             .then(users=> {
+                console.log('users ', users);
                 dispatch({type: REQUEST_ROBOTS_SUCCESS, payload:  users})
             })
             .catch(error => dispatch({ type: REQUEST_ROBOTS_FAIL, payload: error }))

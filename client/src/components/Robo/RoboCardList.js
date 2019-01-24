@@ -1,6 +1,5 @@
 import React from 'react';
 import {Card} from 'components/Robo/RoboCard';
- 
 
 export class CardList extends React.PureComponent{
 
